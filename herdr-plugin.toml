@@ -1,8 +1,8 @@
 id = "dmangla3.fork-from-message"
 name = "Fork from Message"
 version = "0.3.0"
-min_herdr_version = "0.8.0"
-description = "Fork a focused Codex or Claude session and choose where to continue"
+min_herdr_version = "0.9.5"
+description = "Fork exact native conversations, with historical pickers or explicit current-point forks"
 platforms = ["macos", "linux"]
 
 [[actions]]
@@ -25,3 +25,29 @@ title = "Fork agent into new workspace"
 description = "Fork the focused Codex or Claude session into a new Herdr workspace"
 contexts = ["pane"]
 command = ["python3", "scripts/fork_from_message.py", "--destination", "workspace"]
+
+[[actions]]
+id = "fork-current"
+title = "Fork current conversation"
+description = "Open an independent current-point native fork in a new tab"
+contexts = ["pane"]
+command = ["python3", "scripts/fork_from_message.py", "--mode", "fork"]
+
+[[actions]]
+id = "fork-current-pane"
+title = "Fork current conversation beside pane"
+contexts = ["pane"]
+command = ["python3", "scripts/fork_from_message.py", "--mode", "fork", "--destination", "pane"]
+
+[[actions]]
+id = "fork-current-workspace"
+title = "Fork current conversation into workspace"
+contexts = ["pane"]
+command = ["python3", "scripts/fork_from_message.py", "--mode", "fork", "--destination", "workspace"]
+
+[[actions]]
+id = "fork-read-only"
+title = "Fork current conversation read-only"
+description = "Optional restricted child; shared files are not an OS sandbox"
+contexts = ["pane"]
+command = ["python3", "scripts/fork_from_message.py", "--mode", "read-only"]

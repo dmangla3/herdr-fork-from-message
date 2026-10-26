@@ -8,9 +8,12 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 python3 - <<'PY'
 from pathlib import Path
 
-for path in (Path("scripts/fork_from_message.py"), Path("tests/test_fork_from_message.py")):
+for path in (*Path("scripts").glob("*.py"), *Path("tests").glob("*.py")):
     compile(path.read_text(encoding="utf-8"), str(path), "exec")
 PY
+
+bun test tests/runtime_bridge.test.ts
+biome check scripts/runtime_bridge.ts tests/runtime_bridge.test.ts
 
 if command -v herdr >/dev/null 2>&1; then
     herdr --version

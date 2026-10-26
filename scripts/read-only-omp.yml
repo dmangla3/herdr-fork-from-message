@@ -1,0 +1,4 @@
+# Optional read-only child overlay; never used by the default fork.
+goal:
+  enabled: false
+autoResume: false
